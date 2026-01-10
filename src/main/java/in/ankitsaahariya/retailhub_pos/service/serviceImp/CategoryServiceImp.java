@@ -33,6 +33,13 @@ public class CategoryServiceImp implements CategoryService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void deleteCategory(String categoryId) {
+         CategoryEntity existingCategory = categoryRepository.findByCategoryId(categoryId)
+                 .orElseThrow(()-> new RuntimeException("Category not found "+ categoryId ));
+         categoryRepository.delete(existingCategory);
+    }
+
     //    helper Methods
     private CategoryEntity convertToEntity(CategoryRequest categoryRequest){
         return  CategoryEntity.builder()
