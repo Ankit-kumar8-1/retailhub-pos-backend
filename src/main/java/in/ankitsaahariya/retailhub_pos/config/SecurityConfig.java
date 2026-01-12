@@ -1,6 +1,7 @@
 package in.ankitsaahariya.retailhub_pos.config;
 
-import in.ankitsaahariya.retailhub_pos.service.serviceImp.UserDetailService;
+import in.ankitsaahariya.retailhub_pos.filter.JwtRequestFilter;
+import in.ankitsaahariya.retailhub_pos.service.serviceImp.AppUserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +16,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -26,7 +28,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final UserDetailService userDetailService;
+    private final AppUserDetailService appUserDetailService;
+    private final JwtRequestFilter jwtRequestFilter;
 
 
     @Bean
@@ -37,7 +40,8 @@ public class SecurityConfig {
                         .requestMatchers("/category","/items").hasAnyRole("USER","ADMIN")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
-                .sessionManagement(session-> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                .sessionManagement(session-> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
@@ -68,7 +72,7 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(){
         DaoAuthenticationProvider  authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailService);
+        authProvider.setUserDetailsService(appUserDetailService);
         authProvider.setPasswordEncoder(passwordEncoder());
         return  new ProviderManager(authProvider);
     }

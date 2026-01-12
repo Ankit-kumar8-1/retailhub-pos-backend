@@ -6,11 +6,13 @@ import in.ankitsaahariya.retailhub_pos.io.UserResponse;
 import in.ankitsaahariya.retailhub_pos.repository.UserRepository;
 import in.ankitsaahariya.retailhub_pos.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +20,9 @@ public class UserServiceImp implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
+
+
     @Override
     public UserResponse createUser(UserRequest request) {
         UserEntity newUser = convertToEntity(request);
@@ -49,16 +54,23 @@ public class UserServiceImp implements UserService {
 
     @Override
     public String getUserRole(String email) {
-        return "";
+        UserEntity existingUser = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found for the email !"));
+        return existingUser.getRole();
     }
 
     @Override
     public List<UserResponse> readUsers() {
-        return List.of();
+        return userRepository.findAll()
+                .stream()
+                .map(user -> convertToResponse(user))
+                .collect(Collectors.toList());
     }
 
     @Override
     public void deleteUser(String id) {
-
+        UserEntity existingUser = userRepository.findByUserId(id)
+                .orElseThrow(() -> new UsernameNotFoundException("User "));
+        userRepository.delete(existingUser);
     }
 }

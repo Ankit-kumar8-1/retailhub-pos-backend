@@ -2,7 +2,8 @@ package in.ankitsaahariya.retailhub_pos.controller;
 
 import in.ankitsaahariya.retailhub_pos.io.AuthRequest;
 import in.ankitsaahariya.retailhub_pos.io.AuthResponse;
-import in.ankitsaahariya.retailhub_pos.service.serviceImp.UserDetailService;
+import in.ankitsaahariya.retailhub_pos.service.UserService;
+import in.ankitsaahariya.retailhub_pos.service.serviceImp.AppUserDetailService;
 import in.ankitsaahariya.retailhub_pos.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,16 +26,17 @@ public class AuthController {
 
     private  final PasswordEncoder passwordEncoder;
     private  final AuthenticationManager authenticationManager;
-    private final UserDetailService userDetailService;
+    private final AppUserDetailService appUserDetailService;
+    private final UserService userService;
     private final JwtUtil jwtUtil;
 
     @PostMapping("/login")
     public AuthResponse login(@RequestBody AuthRequest request) throws Exception{
         authenticate(request.getEmail(),request.getPassword());
-        final UserDetails userDetails = userDetailService.loadUserByUsername(request.getEmail());
+        final UserDetails userDetails = appUserDetailService.loadUserByUsername(request.getEmail());
         final  String jwtToken = jwtUtil.generateToken(userDetails);
-//        ToDo : fatch the role from repository
-        return new AuthResponse(request.getEmail(),"USER",jwtToken);
+        String role = userService.getUserRole(request.getEmail());
+        return new AuthResponse(request.getEmail(),role,jwtToken);
     }
 
     private  void authenticate(String email ,String password)throws Exception{
