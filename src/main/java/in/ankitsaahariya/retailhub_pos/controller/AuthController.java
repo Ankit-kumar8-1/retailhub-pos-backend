@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -30,13 +31,14 @@ public class AuthController {
     private final UserService userService;
     private final JwtUtil jwtUtil;
 
+
     @PostMapping("/login")
     public AuthResponse login(@RequestBody AuthRequest request) throws Exception{
         authenticate(request.getEmail(),request.getPassword());
         final UserDetails userDetails = appUserDetailService.loadUserByUsername(request.getEmail());
         final  String jwtToken = jwtUtil.generateToken(userDetails);
         String role = userService.getUserRole(request.getEmail());
-        return new AuthResponse(request.getEmail(),role,jwtToken);
+        return new AuthResponse(request.getEmail(),jwtToken,role);
     }
 
     private  void authenticate(String email ,String password)throws Exception{

@@ -45,7 +45,7 @@ public class UserServiceImp implements UserService {
         return UserEntity.builder()
                 .userId(UUID.randomUUID().toString())
                 .email(request.getEmail())
-                .password(request.getPassword())
+                .password(passwordEncoder.encode(request.getPassword()))
                 .role(request.getRole().toUpperCase())
                 .name(request.getName())
                 .build();
