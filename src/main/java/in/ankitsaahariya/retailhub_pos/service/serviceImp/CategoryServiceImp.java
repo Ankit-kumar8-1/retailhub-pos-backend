@@ -4,6 +4,7 @@ import in.ankitsaahariya.retailhub_pos.entity.CategoryEntity;
 import in.ankitsaahariya.retailhub_pos.io.CategoryRequest;
 import in.ankitsaahariya.retailhub_pos.io.CategoryResponse;
 import in.ankitsaahariya.retailhub_pos.repository.CategoryRepository;
+import in.ankitsaahariya.retailhub_pos.repository.ItemsRepository;
 import in.ankitsaahariya.retailhub_pos.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 public class CategoryServiceImp implements CategoryService {
 
     private final CategoryRepository categoryRepository;
+    private final ItemsRepository itemsRepository;
 
     @Override
     public CategoryResponse addCategory(CategoryRequest categoryRequest) {
@@ -52,6 +54,7 @@ public class CategoryServiceImp implements CategoryService {
 
 
     private CategoryResponse convertToResponse(CategoryEntity categoryEntity){
+        Integer itemsCount = itemsRepository.countByCategoryId(categoryEntity.getId());
         return  CategoryResponse.builder()
                 .categoryId(categoryEntity.getCategoryId())
                 .name(categoryEntity.getName())
@@ -60,6 +63,7 @@ public class CategoryServiceImp implements CategoryService {
                 .imgUrl(categoryEntity.getImgUrl())
                 .createdAt(categoryEntity.getCreatedAt())
                 .updatedAt(categoryEntity.getUpdatedAt())
+                .items(itemsCount)
                 .build();
     }
 }
