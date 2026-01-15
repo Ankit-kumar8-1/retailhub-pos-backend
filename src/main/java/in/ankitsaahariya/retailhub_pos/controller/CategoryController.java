@@ -23,6 +23,7 @@ public class CategoryController {
         return  categoryService.addCategory(categoryRequest);
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public List<CategoryResponse> readCategories(){
         return categoryService.readCategories();
