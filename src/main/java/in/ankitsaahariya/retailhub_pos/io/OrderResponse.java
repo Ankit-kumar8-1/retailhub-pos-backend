@@ -18,7 +18,7 @@ public class OrderResponse {
     private String orderId;
     private String customerName;
     private String phoneNumber;
-    private List<OrderRequest.OrderItemRequest> items;
+    private List<OrderResponse.OrderItemResponse> items;
     private Double subtotal;
     private Double tax;
     private Double grandTotal;
@@ -30,7 +30,7 @@ public class OrderResponse {
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
-    private static class OrderItemRequest{
+    public static class OrderItemResponse{
         private String itemId;
         private String name;
         private Double price;

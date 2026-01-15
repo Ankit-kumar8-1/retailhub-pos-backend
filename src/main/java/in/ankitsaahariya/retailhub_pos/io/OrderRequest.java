@@ -26,10 +26,11 @@ public class OrderRequest {
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
-    static class OrderItemRequest{
+    public  static class OrderItemRequest{
         private String itemId;
         private String name;
         private Double price;
         private Integer quantity;
     }
+
 }

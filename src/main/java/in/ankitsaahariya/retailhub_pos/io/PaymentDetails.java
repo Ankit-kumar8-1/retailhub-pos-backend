@@ -16,7 +16,8 @@ public class PaymentDetails {
     private String razorpayOderId;
     private String razorpayPaymentId;
     private String razorpaySignature;
-    private  enum PaymentStatus{
+    private PaymentStatus status;
+    public    enum PaymentStatus{
         PENDING, COMPLETED, FAILED
     }
 }
