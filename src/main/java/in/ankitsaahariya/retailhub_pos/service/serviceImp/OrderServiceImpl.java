@@ -9,8 +9,13 @@ import in.ankitsaahariya.retailhub_pos.io.PaymentMethod;
 import in.ankitsaahariya.retailhub_pos.repository.OrderEntityRepository;
 import in.ankitsaahariya.retailhub_pos.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Pageable; // ✅
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -98,6 +103,24 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderResponse> getLatestOrder() {
         return  orderEntityRepository.findAllByOrderByCreatedAtDesc()
+                .stream()
+                .map(this::convertToResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Double sumSalesByDate(LocalDate date) {
+        return orderEntityRepository.sumSalesByDate(date);
+    }
+
+    @Override
+    public Long countByOrderDate(LocalDate date) {
+        return orderEntityRepository.countByOrderDate(date);
+    }
+
+    @Override
+    public List<OrderResponse> findRecentOrders() {
+        return orderEntityRepository.findRecentOrders(PageRequest.of(0,5))
                 .stream()
                 .map(this::convertToResponse)
                 .collect(Collectors.toList());

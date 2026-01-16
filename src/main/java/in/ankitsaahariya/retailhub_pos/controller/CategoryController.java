@@ -24,7 +24,7 @@ public class CategoryController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping
+    @GetMapping("/categories/get")
     public List<CategoryResponse> readCategories(){
         return categoryService.readCategories();
     }
