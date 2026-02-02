@@ -5,6 +5,7 @@ import in.ankitsaahariya.retailhub_pos.io.UserRequest;
 import in.ankitsaahariya.retailhub_pos.io.UserResponse;
 import in.ankitsaahariya.retailhub_pos.repository.UserRepository;
 import in.ankitsaahariya.retailhub_pos.service.UserService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -40,6 +41,7 @@ public class UserServiceImp implements UserService {
                 .role(newUser.getRole())
                 .build();
     }
+
 
     private UserEntity convertToEntity(UserRequest request) {
         return UserEntity.builder()

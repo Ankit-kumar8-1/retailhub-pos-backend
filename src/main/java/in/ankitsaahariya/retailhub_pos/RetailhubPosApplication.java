@@ -9,6 +9,8 @@ public class RetailhubPosApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RetailhubPosApplication.class, args);
         System.out.println("Application is running ....");
+
 	}
+
 
 }

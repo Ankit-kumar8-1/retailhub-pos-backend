@@ -1,0 +1,594 @@
+{
+  "info": {
+    "_postman_id": "46a97496-1985-4c57-b1c5-8120e3d43ae1",
+    "name": "RetailHub_POS_Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48665253",
+    "_collection_link": "https://go.postman.co/collection/48665253-46a97496-1985-4c57-b1c5-8120e3d43ae1?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Create/Read/Delete(Category)",
+      "item": [
+        {
+          "name": "Add Categories",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc3MDAyMDM5NSwiZXhwIjoxNzcwMDU2Mzk1fQ.CPZ9jJAgYPNWnhd8AnI2-GA7yxV3A5MxZvNaU2u47Zg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc2ODU2NzIyOSwiZXhwIjoxNzY4NjAzMjI5fQ.2gQbXXldrgSJaA-jeBwEVwsLW2WBKx6Ojt8GhAdy8aU",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Fashion\",\r\n    \"description\": \"Clothing, footwear, and accessories\",\r\n    \"bgColor\": \"#E91E63\"\r\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{RetailHub}}/admin/categories",
+              "host": [
+                "{{RetailHub}}"
+              ],
+              "path": [
+                "admin",
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Read Categories",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc3MDAyMDM5NSwiZXhwIjoxNzcwMDU2Mzk1fQ.CPZ9jJAgYPNWnhd8AnI2-GA7yxV3A5MxZvNaU2u47Zg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc2ODU2NzIyOSwiZXhwIjoxNzY4NjAzMjI5fQ.2gQbXXldrgSJaA-jeBwEVwsLW2WBKx6Ojt8GhAdy8aU",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{RetailHub}}/categories/get",
+              "host": [
+                "{{RetailHub}}"
+              ],
+              "path": [
+                "categories",
+                "get"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Category",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc3MDAyMDM5NSwiZXhwIjoxNzcwMDU2Mzk1fQ.CPZ9jJAgYPNWnhd8AnI2-GA7yxV3A5MxZvNaU2u47Zg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{RetailHub}}/admin/categories/aac4c906-63cf-44c7-9f90-0f1bb3af1e39",
+              "host": [
+                "{{RetailHub}}"
+              ],
+              "path": [
+                "admin",
+                "categories",
+                "aac4c906-63cf-44c7-9f90-0f1bb3af1e39"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "login(ADMIN)",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\r\n{\r\n    \"email\": \"ankit9643@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{RetailHub}}/login",
+              "host": [
+                "{{RetailHub}}"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Read Users",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc3MDAyMDM5NSwiZXhwIjoxNzcwMDU2Mzk1fQ.CPZ9jJAgYPNWnhd8AnI2-GA7yxV3A5MxZvNaU2u47Zg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc2ODU2NzIyOSwiZXhwIjoxNzY4NjAzMjI5fQ.2gQbXXldrgSJaA-jeBwEVwsLW2WBKx6Ojt8GhAdy8aU",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{RetailHub}}/admin/users",
+              "host": [
+                "{{RetailHub}}"
+              ],
+              "path": [
+                "admin",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc3MDAyMDM5NSwiZXhwIjoxNzcwMDU2Mzk1fQ.CPZ9jJAgYPNWnhd8AnI2-GA7yxV3A5MxZvNaU2u47Zg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc2ODM5MzgzNiwiZXhwIjoxNzY4NDI5ODM2fQ.odkbr0YXGNYOtYAIc3mlmlLCy0GpwDIV1XfPJPpfSic",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"Mobiles\",\r\n    \"description\" :\"this Section has all Brand Mobiles\",\r\n    \"bgColor\":\"#ffffff\"\r\n}"
+            },
+            "url": {
+              "raw": "{{RetailHub}}/admin/users/527c3f90-7aaf-42dc-bba7-c23bcd0ac119",
+              "host": [
+                "{{RetailHub}}"
+              ],
+              "path": [
+                "admin",
+                "users",
+                "527c3f90-7aaf-42dc-bba7-c23bcd0ac119"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Encoder Password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"password\" :\"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{RetailHub}}/encode",
+              "host": [
+                "{{RetailHub}}"
+              ],
+              "path": [
+                "encode"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Register/login/ (Role_User)",
+      "item": [
+        {
+          "name": "Register User (if ADMIN LOGIN)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9VU0VSIn1dLCJzdWIiOiJzaGlscGFAZ21haWwuY29tIiwiaWF0IjoxNzcwMDIyOTE1LCJleHAiOjE3NzAwNTg5MTV9.r5JuYwgUJSY7R-iSgnPtsu5VDdLinJVBalg1fr9RKCk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc2ODQ0NzU4NiwiZXhwIjoxNzY4NDgzNTg2fQ.rC3tZCU7V4PkUI155ITgm35Rs0q57HWetID4VAckB9s",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"deepak\",\r\n    \"email\":\"deepak@gmail.com\",\r\n    \"password\":\"123456\",\r\n    \"role\":\"ROLE_USER\"\r\n    \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{RetailHub}}/admin/register",
+              "host": [
+                "{{RetailHub}}"
+              ],
+              "path": [
+                "admin",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc3MDAyMDM5NSwiZXhwIjoxNzcwMDU2Mzk1fQ.CPZ9jJAgYPNWnhd8AnI2-GA7yxV3A5MxZvNaU2u47Zg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc2ODU2NzIyOSwiZXhwIjoxNzY4NjAzMjI5fQ.2gQbXXldrgSJaA-jeBwEVwsLW2WBKx6Ojt8GhAdy8aU",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"shilpa@gmail.com\",\r\n    \"password\":\"123456\" \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{RetailHub}}/login",
+              "host": [
+                "{{RetailHub}}"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create/Read/Delete(Items)(Role_Admn)",
+      "item": [
+        {
+          "name": "Add Items",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc2ODU2NzIyOSwiZXhwIjoxNzY4NjAzMjI5fQ.2gQbXXldrgSJaA-jeBwEVwsLW2WBKx6Ojt8GhAdy8aU",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"Nike bets\",\r\n    \"description\":\"More flexible with durable !\",\r\n    \"price\":10000,\r\n    \"categoryId\" : \"9969b17a-9a5f-4208-88f5-f5891cd525cc\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{RetailHub}}/admin/items",
+              "host": [
+                "{{RetailHub}}"
+              ],
+              "path": [
+                "admin",
+                "items"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Read Items",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc3MDAyMDM5NSwiZXhwIjoxNzcwMDU2Mzk1fQ.CPZ9jJAgYPNWnhd8AnI2-GA7yxV3A5MxZvNaU2u47Zg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc2ODU2NzIyOSwiZXhwIjoxNzY4NjAzMjI5fQ.2gQbXXldrgSJaA-jeBwEVwsLW2WBKx6Ojt8GhAdy8aU",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{RetailHub}}/items",
+              "host": [
+                "{{RetailHub}}"
+              ],
+              "path": [
+                "items"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Items",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc2ODQwMzIzMSwiZXhwIjoxNzY4NDM5MjMxfQ.jrU4GeqI5PRQbVxh3RhpJtuES7H1gKSvTtw_opbcCog",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"Boat newEar\",\r\n    \"description\":\"Best quality earphones  !\",\r\n    \"price\":27,\r\n    \"categoryId\" : \"aac4c906-63cf-44c7-9f90-0f1bb3af1e39\":\r\n}"
+            },
+            "url": {
+              "raw": "{{RetailHub}}/admin/items/940bd840-4767-4211-9e34-b01fab9b7030",
+              "host": [
+                "{{RetailHub}}"
+              ],
+              "path": [
+                "admin",
+                "items",
+                "940bd840-4767-4211-9e34-b01fab9b7030"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Read Items (User)",
+      "item": [
+        {
+          "name": "Read Items",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9VU0VSIn1dLCJzdWIiOiJhbWl0QGdtYWlsLmNvbSIsImlhdCI6MTc2ODQ0NzcyNiwiZXhwIjoxNzY4NDgzNzI2fQ.8vpAeih5BnaHtr3ljKTZudMqKKcCBsZZ2_2P6Rcgnv8",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{RetailHub}}/items",
+              "host": [
+                "{{RetailHub}}"
+              ],
+              "path": [
+                "items"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Order",
+      "item": [
+        {
+          "name": "Create Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9VU0VSIn1dLCJzdWIiOiJhbWl0QGdtYWlsLmNvbSIsImlhdCI6MTc2ODU2ODM3MCwiZXhwIjoxNzY4NjA0MzcwfQ.MTkDk1iOhLcz-0SjLsuAqz3Vd6TEl_ppKUd3ht8E6Q4",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"customerName\":\"Amit\",\r\n    \"phoneNumber\":\"1234567899\",\r\n    \"cartItems\":[\r\n        {\r\n        \"ItemId\":\"4fbc93da-01d9-44df-a8eb-d3e3c1a746ad\",\r\n        \"name\": \"Nike Bat\",\r\n        \"price\":\"1400\",\r\n        \"quantity\":1\r\n        }\r\n    ],\r\n    \"subtotal\":1500.00,\r\n    \"tax\":\"200\",\r\n    \"grandTotal\":1700,\r\n    \"paymentMethod\":\"CASH\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{RetailHub}}/orders/create",
+              "host": [
+                "{{RetailHub}}"
+              ],
+              "path": [
+                "orders",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Order",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc2ODQ4MzAyMiwiZXhwIjoxNzY4NTE5MDIyfQ.spKDJQLUNHe_a2-0iqV0hmf1zEX0V0i274-A7A1fWFg",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"customerName\":\"neeraj\",\r\n    \"phoneNumber\":\"1234567899\",\r\n    \"cartItems\":[\r\n        {\r\n        \"ItemId\":\"abc123\",\r\n        \"name\": \"Hp headphones\",\r\n        \"price\":\"250\",\r\n        \"quantity\":1\r\n        }\r\n    ],\r\n    \"subtotal\":500.00,\r\n    \"tax\":\"0.01\",\r\n    \"grandTotal\":550.00,\r\n    \"paymentMethod\":\"CASH\"\r\n}"
+            },
+            "url": {
+              "raw": "{{RetailHub}}/orders/ORD1768483158368",
+              "host": [
+                "{{RetailHub}}"
+              ],
+              "path": [
+                "orders",
+                "ORD1768483158368"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Read orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc2ODQ4MzAyMiwiZXhwIjoxNzY4NTE5MDIyfQ.spKDJQLUNHe_a2-0iqV0hmf1zEX0V0i274-A7A1fWFg",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{RetailHub}}/orders/latest",
+              "host": [
+                "{{RetailHub}}"
+              ],
+              "path": [
+                "orders",
+                "latest"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc3MDAyMDM5NSwiZXhwIjoxNzcwMDU2Mzk1fQ.CPZ9jJAgYPNWnhd8AnI2-GA7yxV3A5MxZvNaU2u47Zg",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XSwic3ViIjoiYW5raXQ5NjQzQGdtYWlsLmNvbSIsImlhdCI6MTc2ODU2OTc1OCwiZXhwIjoxNzY4NjA1NzU4fQ.jNVTQQMzB-eKy70zWZn2sFeNeoXpxBMSo2tKijqDn_s",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{RetailHub}}/dashboard/summary",
+          "host": [
+            "{{RetailHub}}"
+          ],
+          "path": [
+            "dashboard",
+            "summary"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
