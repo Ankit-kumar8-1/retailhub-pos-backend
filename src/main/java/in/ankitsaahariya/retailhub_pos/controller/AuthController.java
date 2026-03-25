@@ -11,6 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,22 +34,29 @@ public class AuthController {
 
 
     @PostMapping("/login")
-    public AuthResponse login(@RequestBody AuthRequest request) throws Exception{
-        authenticate(request.getEmail(),request.getPassword());
-        final UserDetails userDetails = appUserDetailService.loadUserByUsername(request.getEmail());
-        final  String jwtToken = jwtUtil.generateToken(userDetails);
-        String role = userService.getUserRole(request.getEmail());
-        return new AuthResponse(request.getEmail(),jwtToken,role);
-    }
+    public AuthResponse login(@RequestBody AuthRequest request){
 
-    private  void authenticate(String email ,String password)throws Exception{
-        try{
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email,password));
-        }catch (DisabledException e){
-            throw new Exception("User Disabled");
-        }catch (BadCredentialsException e){
-            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST,"Email or password is incorrect");
-        }
+        Authentication authentication =
+                authenticationManager.authenticate(
+                        new UsernamePasswordAuthenticationToken(
+                                request.getEmail(),
+                                request.getPassword()
+                        )
+                );
+
+        UserDetails userDetails =
+                (UserDetails) authentication.getPrincipal();
+
+        String role = userDetails.getAuthorities()
+                .iterator().next().getAuthority();
+
+        String jwtToken = jwtUtil.generateToken(userDetails);
+
+        return new AuthResponse(
+                userDetails.getUsername(),
+                jwtToken,
+                role
+        );
     }
 
     @PostMapping("/encode")

@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -27,6 +28,7 @@ import java.util.List;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+
 
     private final AppUserDetailService appUserDetailService;
     private final JwtRequestFilter jwtRequestFilter;
@@ -69,12 +71,11 @@ public class SecurityConfig {
 
     }
 
+
+
     @Bean
-    public AuthenticationManager authenticationManager(){
-        DaoAuthenticationProvider  authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(appUserDetailService);
-        authProvider.setPasswordEncoder(passwordEncoder());
-        return  new ProviderManager(authProvider);
+    public AuthenticationManager authenticationManager1(AuthenticationConfiguration configuration) throws Exception {
+        return configuration.getAuthenticationManager();
     }
 
 
